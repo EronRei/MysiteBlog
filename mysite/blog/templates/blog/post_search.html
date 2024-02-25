@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <form method="GET" action="{% url 'blog:post_search' %}">
+        <input type="text" name="q" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    
+    {% if query %}
+        <h2>Search results for "{{ query }}"</h2>
+        {% if results %}
+            <ul>
+            {% for post in results %}
+                <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                <p>Published {{ post.publish }} by {{ post.author }}</p>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+        {% endblock%}
+    </div> 
+    <div id="sidebar">
+        <h2>My Blog</h2>
+        <p>This is Bloggers</p>
+        
+        <!-- Search Form -->
+        <form action="{% url 'blog:post_search' %}" method="GET">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+</html>
